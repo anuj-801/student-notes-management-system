@@ -1,66 +1,179 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #e2d0be;
+  color: #000;
+}
+
+.btn-primary:hover {
+    background: #d7bea4;
+}
+
+.btn-outline {
+  border: 1px solid #d1ffc6;
+  color: #5b913b;
+}
+
+.btn-outline:hover {
+    background: #D1FFC6;
+}
+
+.btn-browse {
+    background: #3498db;
+    color: #fff;
+    box-shadow: 0 .3rem .6rem rgba(52, 152, 219, .3);
+}
+
+.btn-browse:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
 }
 
 /* ---------- Navbar ---------- */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background: #fff;
-    /* box-shadow: 0 4px 10px rgba(0,0,0,.08); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background: #fff;
+  box-shadow: 0 0.15rem 0.5rem rgba(0,0,0,.08);
 }
 
 .logo {
-    text-decoration: none;
-    color: #000;
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 1px;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
 }
 
 .text-style {
-    color: #D3C1C3;
+  color: #d3c1c3;
 }
 
 .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
-    font-weight: 500;
-    transition: .3s;
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  transition: 0.3s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:not(.btn):hover {
     color: #3498db;
 }
 
-.btn-outline {
-    padding: 10px 20px;
-    border: 1px solid #D1FFC6;
-    border-radius: 6px;
+/* ---------- Hero Section ---------- */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 85vh; */
+  min-height: calc(100vh - 72px);
+  background-color: #f4f6f9;
+  text-align: center;
+  padding: 2rem;
 }
 
-.btn-outline a {
-    color: #5B913B;
+.hero-content {
+  max-width: 40rem;
 }
 
-.btn-primary {
-    padding: 10px 20px;
-    background: #E2D0BE;
-    border-radius: 6px;
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* ---------------------- Notes Page -------------------- */
+/* ---------- Semester-section ---------- */
+.sem-container {
+    padding: 3.5rem 1.2rem;
+    max-width: 62rem;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.sem-header h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.8rem;
+}
+
+.sem-header p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 3rem;
+}
+
+.sem-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.sem-card {
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e0e6ed;
+    border-radius: 0.8rem;
+    padding: 2rem 1.5rem;
+    width: 16rem;
+    text-decoration: none;
+    color: #2c3e50;
+    transition: 0.3s ease;
+    box-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+
+.sem-icon{
+    font-size:2.5rem;
+    margin-bottom:1rem;
+}
+
+.sem-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #45494b;
+}
+
+.sem-card p {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+.sem-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.1);
+    border-color: #3498db;
 }
