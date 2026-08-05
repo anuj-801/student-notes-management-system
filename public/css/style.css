@@ -23,7 +23,7 @@ body {
 }
 
 .btn-primary:hover {
-    background: #d7bea4;
+  background: #d7bea4;
 }
 
 .btn-outline {
@@ -32,18 +32,18 @@ body {
 }
 
 .btn-outline:hover {
-    background: #D1FFC6;
+  background: #d1ffc6;
 }
 
 .btn-browse {
-    background: #3498db;
-    color: #fff;
-    box-shadow: 0 .3rem .6rem rgba(52, 152, 219, .3);
+  background: #3498db;
+  color: #fff;
+  box-shadow: 0 0.3rem 0.6rem rgba(52, 152, 219, 0.3);
 }
 
 .btn-browse:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
+  background: #2980b9;
+  transform: translateY(-2px);
 }
 
 /* ---------- Navbar ---------- */
@@ -53,7 +53,7 @@ nav {
   align-items: center;
   padding: 1rem 2.5rem;
   background: #fff;
-  box-shadow: 0 0.15rem 0.5rem rgba(0,0,0,.08);
+  box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.08);
 }
 
 .logo {
@@ -83,7 +83,7 @@ nav {
 }
 
 .nav-links a:not(.btn):hover {
-    color: #3498db;
+  color: #3498db;
 }
 
 /* ---------- Hero Section ---------- */
@@ -116,64 +116,84 @@ nav {
 }
 
 /* ---------------------- Notes Page -------------------- */
+.page-container {
+  padding: 3.5rem 1.2rem;
+  max-width: 62rem;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-header h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.8rem;
+}
+
+.page-header p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #e0e6ed;
+  border-radius: 0.8rem;
+  padding: 2rem 1.5rem;
+  width: 16rem;
+  text-decoration: none;
+  color: #2c3e50;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+  box-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+
 /* ---------- Semester-section ---------- */
-.sem-container {
-    padding: 3.5rem 1.2rem;
-    max-width: 62rem;
-    margin: 3rem auto;
-    text-align: center;
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-.sem-header h2 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 0.8rem;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.1);
+  border-color: #3498db;
 }
 
-.sem-header p {
-    font-size: 1rem;
-    color: #7f8c8d;
-    margin-bottom: 3rem;
+/* ---------------------- Semester Page -------------------- */
+/* ---------- Subject-section ---------- */
+
+.card-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
 }
 
-.sem-cards {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+.card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #2c3e50;
 }
 
-.sem-card {
-    cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #e0e6ed;
-    border-radius: 0.8rem;
-    padding: 2rem 1.5rem;
-    width: 16rem;
-    text-decoration: none;
-    color: #2c3e50;
-    transition: 0.3s ease;
-    box-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.05);
+.card p {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  line-height: 1.5;
 }
 
-.sem-icon{
-    font-size:2.5rem;
-    margin-bottom:1rem;
+.card:hover h3 {
+  color: #3498db;
 }
 
-.sem-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
-    color: #45494b;
-}
-
-.sem-card p {
-    font-size: 0.8rem;
-    color: #7f8c8d;
-}
-
-.sem-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.1);
-    border-color: #3498db;
-}
