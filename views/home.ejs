@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Notes Management System</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
+
+  <%- include("partials/head.ejs") %>
 
   <body>
-    <nav>
-      <a href="/" class="logo">
-        Student <span class="text-style">Notes</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="/about">About</a></li>
-        <li><a href="/notes" class="btn btn-outline"> Explore Notes </a></li>
-        <li><a href="/login" class="btn btn-primary"> Login </a></li>
-      </ul>
-    </nav>
+
+    <%- include("partials/navbar.ejs") %>
+
     <main>
       <section class="hero">
         <div class="hero-content">
@@ -30,5 +19,7 @@
         </div>
       </section>
     </main>
+
+    <script src="/js/app.js"></script>
   </body>
 </html>
