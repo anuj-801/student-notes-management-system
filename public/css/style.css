@@ -155,9 +155,9 @@ nav {
   text-decoration: none;
   color: #2c3e50;
   transition:
-    transform .3s ease,
-    box-shadow .3s ease,
-    border-color .3s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
   box-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.05);
 }
 
@@ -192,3 +192,71 @@ nav {
   color: #3498db;
 }
 
+/* ---------------------- Admin Page -------------------- */
+.admin-container {
+  max-width: 45rem;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.form-card {
+  background-color: #fff;
+  border: 1px solid #e0e6ed;
+  border-radius: 0.8rem;
+  padding: 2.5rem;
+  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.form-card h3 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #f4f6f9;
+  padding-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  background-color: #f9f9f9;
+  color: #333;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3498db;
+  background-color: #fff;
+}
+
+.btn-submit {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  padding: 1rem;
+  cursor: pointer;
+  border: none;
+}

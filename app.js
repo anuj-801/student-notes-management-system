@@ -18,7 +18,11 @@ app.get("/notes", (req, res) => {
 
 app.get("/notes/semester1", (req, res) => {
     res.render("semester.ejs");
-})
+});
+
+app.get("/admin", (req, res) => {
+    res.render("admin.ejs");
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
