@@ -195,8 +195,6 @@ nav {
 /* ---------------------- Admin Page -------------------- */
 .admin-container {
   max-width: 45rem;
-  margin: 3rem auto;
-  padding: 0 1rem;
 }
 
 .form-card {
@@ -206,6 +204,12 @@ nav {
   padding: 2.5rem;
   box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.05);
   text-align: left;
+}
+
+.form-card p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 1.3rem;
 }
 
 .form-card h3 {
@@ -259,4 +263,9 @@ nav {
   padding: 1rem;
   cursor: pointer;
   border: none;
+}
+
+/* ---------------------- Login Page -------------------- */
+.login-container {
+  max-width: 32rem;
 }
