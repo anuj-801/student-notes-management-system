@@ -3,7 +3,12 @@
   <%- include("partials/head.ejs") %>
 
   <body>
-    <%- include("partials/navbar.ejs") %>
+    <nav>
+      <a href="/" class="logo">STUDENTNOTES</a>
+      <ul class="nav-links">
+        <li><a href="/" class="btn btn-primary">HOME</a></li>
+      </ul>
+    </nav>
 
     <main>
       <section class="page-container login-container">
@@ -19,7 +24,9 @@
               <label for="password">Password</label>
               <input type="password" name="password" id="password" required />
             </div>
-            <button type="submit" class="btn btn-browse btn-submit">Login</button>
+            <button type="submit" class="btn btn-browse btn-submit">
+              Login
+            </button>
           </form>
         </div>
       </section>
