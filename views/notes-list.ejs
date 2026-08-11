@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+  <body>
+    <%- include("partials/navbar.ejs") %>
+
+    <main>
+      <section class="page-container">
+        <div class="page-header">
+          <h2>Notes</h2>
+          <p>Study materials for this subject.</p>
+        </div>
+        <div class="card-container">
+            <% for(const note of notes) { %>
+                    <div class="card">
+                        <h3><%= note.title %></h3>
+                        <p><%= note.unit %></p>
+                        <a href="<%=note.pdf%>" target="_blank">
+                            View PDF
+                        </a>
+                    </div>
+            <% } %>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+

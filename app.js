@@ -24,19 +24,30 @@ app.get("/notes/semester1", (req, res) => {
     res.render("semester.ejs");
 });
 
+app.get("/notes/semester1/c-programming", async (req, res) => {
+    const notes = await Note.find({
+        semester: "1",
+        subject: "c-programming",
+    });
+    console.log(notes);
+    res.render("notes-list.ejs", { notes });
+});
+
 app.get("/admin", (req, res) => {
     res.render("admin.ejs");
 });
 
 app.post("/admin", upload.single("pdf"), async (req, res) => {
+    console.log("POST /admin received");
     const note = new Note({
         title: req.body.title,
         semester: req.body.semester,
         subject: req.body.subject,
         unit: req.body.unit,
-        pdf: req.file.path
+        pdf: `/uploads/${req.file.filename}`
     });
     await note.save();
+    console.log("NOTE SAVED:", note);
 
     res.send("Note saved successfully!");
 });
