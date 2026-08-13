@@ -24,11 +24,27 @@ app.get("/notes/semester1", (req, res) => {
     res.render("semester.ejs");
 });
 
-app.get("/notes/semester1/c-programming", async (req, res) => {
-    const notes = await Note.find({
-        semester: "1",
-        subject: "c-programming",
+app.get("/notes/semester/:semester", async (req, res) => {
+    const semester = req.params.semester;
+    const subjects = await Note.distinct("subject", {
+        semester: semester
     });
+    console.log(subjects);
+    res.render("semester.ejs", {
+        semester,
+        subjects
+    });
+});
+
+app.get("/notes/semester/:semester/:subject", async (req, res) => {
+    const semester = req.params.semester;
+    const subject = req.params.subject.replaceAll("-", " ");
+    const notes = await Note.find({
+        semester: semester,
+        subject: new RegExp(`^${subject}$`, "i")
+    })
+    console.log("Semester:", semester);
+    console.log("Subject:", subject);
     console.log(notes);
     res.render("notes-list.ejs", { notes });
 });
