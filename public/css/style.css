@@ -196,6 +196,41 @@ body.dark-mode .btn-primary {
 }
 
 /* ---------------------- Admin Page -------------------- */
+.admin-dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.admin-dashboard-card {
+  display: block;
+  padding: 2rem;
+  background-color: #fff;
+  border: 1px solid #e0e6ed;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  color: #2c3e50;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.admin-dashboard-card:hover {
+  transform: translateY(-px);
+  border-color: #2c3e50;
+  box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard-card h3 {
+  margin-bottom: 0.6rem;
+}
+
+.admin-dashboard-card p {
+  color: #7f8c8d;
+}
+
 .form-card {
   border: 1px solid #000;
   border-radius: 0;
@@ -274,6 +309,70 @@ body.dark-mode .btn-primary {
   background: #e6e6e6;
   color: #000;
 }
+
+/* ---------------------- admin-notes Page -------------------- */
+.admin-notes-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.admin-note-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.3rem;
+  background: #fff;
+  border: 1px solid #e0e6ed;
+  border-radius: 0.7rem;
+  box-shadow: 0 0.15rem 0.4rem rgba(0, 0, 0, 0.04);
+}
+
+.admin-note-info {
+  flex: 1;
+  text-align: left;
+}
+
+.admin-note-info h3 {
+  margin-bottom: 0.4rem;
+  color: #2c3e50;
+}
+
+.admin-note-info p {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.admin-note-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btn-edit,
+.btn-delete {
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.btn-edit {
+  background: #f39c12;
+}
+
+.btn-edit:hover {
+  background: #d68910;
+}
+
+.btn-delete {
+  background: #e74c3c;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}
+
 
 /* ---------------------- Login Page -------------------- */
 .login-container {
