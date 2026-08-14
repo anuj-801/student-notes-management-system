@@ -3,14 +3,18 @@
   <%- include("partials/head.ejs") %>
 
   <body>
-    <%- include("partials/navbar.ejs") %>
-
+    <nav>
+      <a href="/" class="logo">STUDENTNOTES</a>
+      <ul class="nav-links">
+        <li><a href="/admin" class="btn btn-primary">DASHBOARD</a></li>
+      </ul>
+    </nav>
+    
     <main>
-      <section class="admin-container">
+      <section class="admin-container login-container">
 
         <div class="page-header">
           <h2>Edit Note</h2>
-          <p>Update the selected note.</p>
         </div>
 
         <div class="form-card">

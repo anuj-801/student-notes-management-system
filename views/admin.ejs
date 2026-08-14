@@ -3,13 +3,17 @@
   <%- include("partials/head.ejs") %>
 
   <body>
-    <%- include("partials/navbar.ejs") %>
-
+    <nav>
+      <a href="/" class="logo">STUDENTNOTES</a>
+      <ul class="nav-links">
+        <li><a href="/" class="btn btn-primary">LOG OUT</a></li>
+      </ul>
+    </nav>
+    
     <main>
       <section class="admin-container">
         <div class="page-header">
           <h2>Admin Dashboard</h2>
-          <p>Manage study materials and notes.</p>
         </div>
         <div class="admin-dashboard">
           <a href="/admin/upload" class="admin-dashboard-card">
