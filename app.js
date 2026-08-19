@@ -38,7 +38,6 @@ app.get("/notes/semester/:semester", async (req, res) => {
     const subjects = await Note.distinct("subject", {
         semester: semester
     });
-    console.log(subjects);
     res.render("semester.ejs", {
         semester,
         subjects
@@ -52,15 +51,11 @@ app.get("/notes/semester/:semester/:subject", async (req, res) => {
         semester: semester,
         subject: new RegExp(`^${subject}$`, "i")
     })
-    console.log("Semester:", semester);
-    console.log("Subject:", subject);
-    console.log(notes);
     res.render("notes-list.ejs", { notes });
 });
 
 app.get("/admin", isAdmin, async (req, res) => {
     const notes = await Note.find();
-    console.log(notes);
     res.render("admin.ejs", { notes });
 });
 
@@ -69,7 +64,6 @@ app.get("/admin/upload", isAdmin, (req, res) => {
 });
 
 app.post("/admin", isAdmin, upload.single("pdf"), async (req, res) => {
-    console.log("POST /admin received");
     const note = new Note({
         title: req.body.title,
         semester: req.body.semester,
@@ -78,7 +72,6 @@ app.post("/admin", isAdmin, upload.single("pdf"), async (req, res) => {
         pdf: `/uploads/${req.file.filename}`
     });
     await note.save();
-    console.log("NOTE SAVED:", note);
 
     res.send("Note saved successfully!");
 });
@@ -101,7 +94,6 @@ app.get("/admin/notes", isAdmin, async (req, res) => {
 app.get("/admin/notes/edit/:id", isAdmin, async (req, res) => {
     const { id } = req.params;
     const note = await Note.findById(id);
-    console.log(note);
     res.render("edit-note.ejs", { note });
 });
 
@@ -121,13 +113,17 @@ app.post("/admin/notes/edit/:id", isAdmin, async (req, res) => {
 app.delete("/admin/notes/delete/:id", isAdmin, async (req, res) => {
     const id = req.params.id;
     const note = await Note.findById(id);
+    if (!note) {
+        return res.status(404).send("Note not found");
+    }
     const filePath = path.join(
         __dirname,
         "public",
         note.pdf.replace("/", "")
     );
-    console.log("File path:", filePath);
-    fs.unlinkSync(filePath);
+    if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+    }
     await Note.findByIdAndDelete(id);
     res.redirect("/admin/notes");
 });
@@ -165,6 +161,10 @@ app.get("/logout", (req, res) => {
     req.session.destroy(() => {
         res.redirect("/login");
     });
+});
+
+app.use((req, res) => {
+    res.status(404).render("404.ejs");
 });
 
 connectDB();

@@ -465,3 +465,135 @@ body.dark-mode .btn-primary {
   margin: auto;
 }
 
+
+
+
+/* ---------------------- Mobile Responsive -------------------- */
+
+@media (max-width: 768px) {
+
+  /* Navbar */
+  nav {
+    padding: 1rem 1.2rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.75rem;
+  }
+
+  /* Main containers */
+  .page-container {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+
+  /* Page heading */
+  .page-header h2 {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  .page-header p {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  /* Cards */
+  .card-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.4rem;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: calc(100vh - 70px);
+    padding: 1.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* Admin dashboard */
+  .admin-dashboard {
+    grid-template-columns: 1fr;
+    margin: 1rem;
+    gap: 1rem;
+  }
+
+  /* Forms */
+  .form-card {
+    padding: 1.5rem;
+  }
+
+  /* Manage notes */
+  .admin-container {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .admin-notes-list {
+    grid-template-columns: 1fr;
+  }
+
+  .semester-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .semester-filter label {
+    text-align: center;
+  }
+
+  .semester-filter select {
+    width: 100%;
+  }
+
+  .admin-note-actions {
+    flex-wrap: wrap;
+  }
+
+  .admin-note-actions .btn {
+    flex: 1;
+    text-align: center;
+  }
+  /* Login & Upload forms */
+
+.login-container {
+  max-width: 100%;
+  width: 100%;
+}
+
+.form-card {
+  width: 100%;
+  padding: 1.2rem;
+}
+
+.form-card h3 {
+  font-size: 1.5rem;
+}
+
+.form-group input,
+.form-group select {
+  font-size: 1rem;
+}
+
+.btn-submit {
+  padding: 1rem;
+}
+
+}
+
