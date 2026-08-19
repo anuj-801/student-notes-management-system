@@ -84,9 +84,18 @@ app.post("/admin", isAdmin, upload.single("pdf"), async (req, res) => {
 });
 
 app.get("/admin/notes", isAdmin, async (req, res) => {
-    const notes = await Note.find();
+    const semester = req.query.semester;
 
-    res.render("admin-notes.ejs", { notes });
+    let notes;
+    if (semester) {
+        notes = await Note.find({ semester: semester });
+    } else {
+        notes = await Note.find();
+    }
+    res.render("admin-notes.ejs", {
+        notes,
+        semester
+    });
 });
 
 app.get("/admin/notes/edit/:id", isAdmin, async (req, res) => {
