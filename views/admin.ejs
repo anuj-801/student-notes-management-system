@@ -3,29 +3,39 @@
   <%- include("partials/head.ejs") %>
 
   <body>
-    <nav>
+    <nav class="navbar">
       <a href="/admin" class="logo">STUDENTNOTES</a>
       <ul class="nav-links">
-        <li><a href="/logout" class="btn btn-primary">LOG OUT</a></li>
+        <li><a href="/" class="btn btn-primary btn-nav">HOME</a></li>
+        <li><a href="/admin/upload" class="btn btn-primary btn-nav">UPLOAD NOTES</a></li>
+        <li><a href="/admin/notes" class="btn btn-primary btn-nav">MANAGE NOTES</a></li>
+        <li><a href="/logout" class="btn btn-primary btn-nav">LOGOUT</a></li>
       </ul>
     </nav>
     
     <main>
       <section class="admin-container">
         <div class="page-header">
-          <h2>Admin Dashboard</h2>
+          <h2>📊 Admin Dashboard</h2>
+          <p>Manage study materials and notes for students</p>
         </div>
         <div class="admin-dashboard">
           <a href="/admin/upload" class="admin-dashboard-card">
+            <div class="card-icon">📤</div>
             <h3>Upload Notes</h3>
-            <p>Add new study materials for students.</p>
+            <p>Add new study materials and resources for students.</p>
+            <div class="card-action">Click to Upload →</div>
           </a>
           <a href="/admin/notes" class="admin-dashboard-card">
+            <div class="card-icon">📋</div>
             <h3>Manage Notes</h3>
-            <p>View, update, or delete uploaded notes.</p>
+            <p>View, edit, or delete uploaded study materials.</p>
+            <div class="card-action">Click to Manage →</div>
           </a>
         </div>
       </section>
     </main>
+
+    <%- include("partials/script.ejs") %>
   </body>
 </html>
