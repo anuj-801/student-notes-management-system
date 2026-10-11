@@ -6,18 +6,22 @@
     <%- include("partials/navbar.ejs") %>
 
     <main>
-      <section class="page-container">
+      <section class="page-container error-container">
         <div class="page-header">
-          <h2>404 - Page Not Found</h2>
-          <p>
-            Sorry, the page you are looking for doesn't exist.
+          <h1 class="error-code">404</h1>
+          <h2>Page Not Found</h2>
+          <p class="error-message">
+            Sorry, the page you are looking for doesn't exist or has been moved.
           </p>
 
-          <a href="/" class="btn btn-browse">
-            Go Home
+          <a href="/" class="btn btn-browse error-back-link">
+            Return to Home
           </a>
         </div>
       </section>
     </main>
+
+    <%- include("partials/footer.ejs") %>
+    <%- include("partials/script.ejs") %>
   </body>
 </html>

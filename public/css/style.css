@@ -1035,3 +1035,33 @@ body.dark-mode .btn-browse:hover {
 
 }
 
+
+/* ---------------------- Footer -------------------- */
+.footer {
+  background-color: #f8f8f8;
+  border-top: 1px solid #e0e0e0;
+  padding: 2rem 3rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-content p {
+    font-size: 0.85rem;
+  }
+}

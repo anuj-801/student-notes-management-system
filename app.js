@@ -77,12 +77,28 @@ app.post("/admin", isAdmin, upload.single("pdf"), async (req, res) => {
             return res.status(400).send("Please upload a PDF file");
         }
 
+        // Validate input
+        const { title, course, semester, subject, unit } = req.body;
+        if (!title || !course || !semester || !subject || !unit) {
+            return res.status(400).send("All fields are required");
+        }
+
+        // Validate semester is a number
+        if (isNaN(semester) || semester < 1 || semester > 6) {
+            return res.status(400).send("Semester must be between 1 and 6");
+        }
+
+        // Validate unit is a number
+        if (isNaN(unit) || unit < 1) {
+            return res.status(400).send("Unit must be a positive number");
+        }
+
         const note = new Note({
-            title: req.body.title,
-            course: req.body.course,
-            semester: req.body.semester,
-            subject: req.body.subject,
-            unit: req.body.unit,
+            title: title.trim(),
+            course: course.trim(),
+            semester: semester.trim(),
+            subject: subject.trim(),
+            unit: unit.trim(),
             pdf: `/uploads/${req.file.filename}`
         });
         await note.save();

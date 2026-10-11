@@ -1,0 +1,12 @@
+<script>
+  // Common scripts for all pages
+  document.addEventListener("DOMContentLoaded", function() {
+    // Add smooth transitions
+    document.body.style.opacity = "1";
+  });
+
+  // Prevent accidental navigation
+  function confirmDelete(message) {
+    return confirm(message || "Are you sure you want to delete this?");
+  }
+</script>
