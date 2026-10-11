@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+    <h1>Welcome, <%= student.name %>!</h1>
+
+    <h2>Your Details</h2>
+
+    <p>Name: <%= student.name %></p>
+    <p>Email: <%= student.email %></p>
+    <p>Course: <%= student.course %></p>
+    <p>Semester: <%= student.semester %></p>
+
+    <a href="/student/notes">Explore Notes</a>
+
+    <br><br>
+
+    <a href="/student-logout">Logout</a>
+
+</body>
+</html>

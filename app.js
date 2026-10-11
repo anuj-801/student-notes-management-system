@@ -12,6 +12,7 @@ const upload = require("./middleware/upload");
 const connectDB = require("./config/db");
 const Note = require("./models/note");
 const Admin = require("./models/admin");
+const Student = require("./models/student");
 const bcrypt = require("bcrypt");
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -66,6 +67,7 @@ app.get("/admin/upload", isAdmin, (req, res) => {
 app.post("/admin", isAdmin, upload.single("pdf"), async (req, res) => {
     const note = new Note({
         title: req.body.title,
+        course: req.body.course,
         semester: req.body.semester,
         subject: req.body.subject,
         unit: req.body.unit,
@@ -132,6 +134,98 @@ app.get("/login", (req, res) => {
     res.render("login.ejs");
 });
 
+
+app.get("/register", (req, res) => {
+    res.render("register.ejs");
+});
+
+
+app.post("/register", async (req, res) => {
+    const { name, email, password, course, semester } = req.body;
+
+    const existingStudent = await Student.findOne({ email });
+
+    if (existingStudent) {
+    return res.status(409).send(
+        "This email is already registered. Please log in."
+    );
+}
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const student = new Student({
+        name,
+        email,
+        password: hashedPassword,
+        course,
+        semester
+    });
+
+    await student.save();
+
+    res.redirect("/student-login");
+});
+
+app.get("/student-login", (req, res) => {
+    res.render("student-login.ejs");
+});
+
+app.post("/student-login", async (req, res) => {
+    const { email, password } = req.body;
+
+    const student = await Student.findOne({ email });
+
+    if (!student) {
+        return res.send("Invalid email or password");
+    }
+
+    const isMatch = await bcrypt.compare(
+        password,
+        student.password
+    );
+
+    if (!isMatch) {
+        return res.send("Invalid email or password");
+    }
+
+    req.session.student = student._id;
+
+    res.redirect("/student/dashboard");
+});
+
+app.get("/student/dashboard", async (req, res) => {
+    if (!req.session.student) {
+        return res.redirect("/student-login");
+    }
+
+    const student = await Student.findById(req.session.student);
+
+    if (!student) {
+        return res.redirect("/student-login");
+    }
+
+    res.render("student-dashboard.ejs", { student });
+});
+
+app.get("/student/notes", async (req, res) => {
+    if (!req.session.student) {
+        return res.redirect("/student-login");
+    }
+
+    const student = await Student.findById(req.session.student);
+
+    if (!student) {
+        return res.redirect("/student-login");
+    }
+
+    const notes = await Note.find({
+        course: student.course,
+        semester: student.semester
+    });
+
+    res.render("notes-list.ejs", { notes });
+});
+
 function isAdmin(req, res, next) {
     if (req.session.admin) {
         next();
@@ -160,6 +254,12 @@ app.post("/login", async (req, res) => {
 app.get("/logout", (req, res) => {
     req.session.destroy(() => {
         res.redirect("/login");
+    });
+});
+
+app.get("/student-logout", (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/student-login");
     });
 });
 
