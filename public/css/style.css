@@ -307,12 +307,6 @@ body.dark-mode .btn-browse:hover {
   background-color: #fafafa;
 }
 
-.card-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
 .admin-dashboard-card h3 {
   margin-bottom: 0.8rem;
   font-size: 1.5rem;
