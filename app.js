@@ -279,22 +279,30 @@ app.get("/student/dashboard", async (req, res) => {
 });
 
 app.get("/student/notes", async (req, res) => {
-    if (!req.session.student) {
-        return res.redirect("/student-login");
+    try {
+        if (!req.session.student) {
+            return res.redirect("/student-login");
+        }
+
+        const student = await Student.findById(req.session.student);
+
+        if (!student) {
+            return res.redirect("/student-login");
+        }
+
+        const notes = await Note.find({
+            course: student.course,
+            semester: student.semester
+        });
+
+        res.render("notes-list.ejs", { 
+            notes: notes,
+            student: student
+        });
+    } catch (error) {
+        console.error("Student notes error:", error);
+        res.status(500).send("Error loading notes");
     }
-
-    const student = await Student.findById(req.session.student);
-
-    if (!student) {
-        return res.redirect("/student-login");
-    }
-
-    const notes = await Note.find({
-        course: student.course,
-        semester: student.semester
-    });
-
-    res.render("notes-list.ejs", { notes });
 });
 
 // Protected download route - requires student login

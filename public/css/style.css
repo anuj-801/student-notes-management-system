@@ -243,6 +243,12 @@ body.dark-mode .btn-browse:hover {
   color: #777;
 }
 
+.note-meta {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
 .card:hover {
   background-color: #fff;
   border-color: #000;

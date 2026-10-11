@@ -7,18 +7,28 @@
     <main>
       <section class="page-container">
         <div class="page-header">
-          <h2>Notes</h2>
-          <p>Study materials for this subject.</p>
+          <h2>Your Semester Notes</h2>
+          <p>Study materials for your course and semester.</p>
         </div>
         <div class="card-container">
-            <% for(const note of notes) { %>
+            <% if (notes && notes.length > 0) { %>
+                <% for(const note of notes) { %>
                     <div class="card">
                         <h3><%= note.title %></h3>
-                        <p><%= note.unit %></p>
+                        <p>Unit <%= note.unit %></p>
+                        <p class="note-meta">Subject: <%= note.subject %></p>
                         <a href="/download/<%= note.pdf.split('/').pop() %>" class="btn-download">
                             Download PDF
                         </a>
                     </div>
+                <% } %>
+            <% } else { %>
+                <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                    <h3>No Notes Available</h3>
+                    <p style="color: #777; margin-top: 1rem;">
+                        There are no study materials available for your semester yet. Please check back soon!
+                    </p>
+                </div>
             <% } %>
         </div>
       </section>
