@@ -24,6 +24,13 @@ app.use(session({
     saveUninitialized: false
 }));
 
+// Middleware to pass session data to all views
+app.use((req, res, next) => {
+    res.locals.student = req.session.student || null;
+    res.locals.admin = req.session.admin || null;
+    next();
+});
+
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {

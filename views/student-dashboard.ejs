@@ -4,28 +4,29 @@
   <%- include("partials/head.ejs") %>
 
   <body>
-    <nav>
+    <nav class="navbar">
       <a href="/" class="logo">STUDENTNOTES</a>
       <ul class="nav-links">
-        <li><a href="/" class="btn btn-primary">HOME</a></li>
-        <li><a href="/student-logout" class="btn btn-primary">LOGOUT</a></li>
+        <li><a href="/" class="btn btn-primary btn-nav">HOME</a></li>
+        <li><a href="/student/notes" class="btn btn-primary btn-nav">YOUR NOTES</a></li>
+        <li><a href="/student-logout" class="btn btn-primary btn-nav">LOGOUT</a></li>
       </ul>
     </nav>
 
     <main>
       <section class="page-container dashboard-container">
         <div class="dashboard-card">
-          <h2>Welcome, <%= student.name %>!</h2>
+          <h2>Welcome, <%= student.name %>! 👋</h2>
 
           <div class="student-details">
             <div class="detail-section">
-              <h3>Your Details</h3>
+              <h3>Your Account Details</h3>
               <div class="detail-item">
-                <span class="detail-label">Name:</span>
+                <span class="detail-label">Full Name:</span>
                 <span class="detail-value"><%= student.name %></span>
               </div>
               <div class="detail-item">
-                <span class="detail-label">Email:</span>
+                <span class="detail-label">Email Address:</span>
                 <span class="detail-value"><%= student.email %></span>
               </div>
               <div class="detail-item">
@@ -33,15 +34,15 @@
                 <span class="detail-value"><%= student.course %></span>
               </div>
               <div class="detail-item">
-                <span class="detail-label">Semester:</span>
-                <span class="detail-value"><%= student.semester %></span>
+                <span class="detail-label">Current Semester:</span>
+                <span class="detail-value">Semester <%= student.semester %></span>
               </div>
             </div>
           </div>
 
           <div class="dashboard-actions">
             <a href="/student/notes" class="btn btn-browse btn-action">
-              Explore Your Notes
+              📚 Explore Your Semester Notes
             </a>
           </div>
         </div>

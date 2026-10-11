@@ -1,7 +1,19 @@
 <nav class="navbar">
   <a href="/" class="logo">STUDENTNOTES</a>
   <ul class="nav-links">
-    <li><a href="/student-login" class="btn btn-primary btn-nav">STUDENT LOGIN</a></li>
-    <li><a href="/login" class="btn btn-primary btn-nav">ADMIN LOGIN</a></li>
+    <% if (student) { %>
+      <!-- Student Navigation -->
+      <li><a href="/student/notes" class="btn btn-primary btn-nav">YOUR NOTES</a></li>
+      <li><a href="/student/dashboard" class="btn btn-primary btn-nav">DASHBOARD</a></li>
+      <li><a href="/student-logout" class="btn btn-primary btn-nav">LOGOUT</a></li>
+    <% } else if (admin) { %>
+      <!-- Admin Navigation -->
+      <li><a href="/admin" class="btn btn-primary btn-nav">ADMIN</a></li>
+      <li><a href="/logout" class="btn btn-primary btn-nav">LOGOUT</a></li>
+    <% } else { %>
+      <!-- Guest Navigation -->
+      <li><a href="/student-login" class="btn btn-primary btn-nav">STUDENT LOGIN</a></li>
+      <li><a href="/login" class="btn btn-primary btn-nav">ADMIN LOGIN</a></li>
+    <% } %>
   </ul>
 </nav>

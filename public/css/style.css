@@ -372,8 +372,8 @@ body.dark-mode .btn-browse:hover {
 }
 
 .btn-submit {
-  background: #000;
-  color: #fff;
+  background: #000 !important;
+  color: #fff !important;
   width: 100%;
   margin-top: 1rem;
   font-size: 1rem;
@@ -385,8 +385,8 @@ body.dark-mode .btn-browse:hover {
 }
 
 .btn-submit:hover {
-  background: #e6e6e6;
-  color: #000;
+  background: #e6e6e6 !important;
+  color: #000 !important;
 }
 
 /* ---------------------- admin-notes Page -------------------- */
@@ -492,7 +492,7 @@ body.dark-mode .btn-browse:hover {
   font-weight: 600;
 }
 
-/* View PDF */
+/* Download PDF */
 
 .admin-note-actions .btn-browse {
   background: #fff;
@@ -659,14 +659,14 @@ body.dark-mode .btn-browse:hover {
   flex: 1;
   text-align: center;
   padding: 1rem 2rem;
-  background-color: #000;
-  color: #fff;
+  background-color: #000 !important;
+  color: #fff !important;
   border: 2px solid #000;
 }
 
 .btn-action:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: #fff !important;
+  color: #000 !important;
 }
 
 /* ---------------------- Notes List Styling -------------------- */
