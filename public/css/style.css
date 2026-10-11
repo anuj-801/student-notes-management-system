@@ -248,6 +248,28 @@ body.dark-mode .btn-browse:hover {
   border-color: #000;
 }
 
+.btn-download {
+  display: inline-block;
+  background-color: #000;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  border: 2px solid #000;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn-download:hover {
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+}
+
 /* ---------------------- Admin Dashboard Page -------------------- */
 .admin-dashboard {
   display: grid;

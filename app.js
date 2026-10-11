@@ -290,6 +290,33 @@ app.get("/student/notes", async (req, res) => {
     res.render("notes-list.ejs", { notes });
 });
 
+// Protected download route - requires student login
+app.get("/download/:filename", async (req, res) => {
+    try {
+        // Check if user is logged in (either student or admin)
+        if (!req.session.student && !req.session.admin) {
+            // Determine if they should login as student or admin based on context
+            return res.status(401).render("student-login.ejs", {
+                error: "You must login to download notes"
+            });
+        }
+
+        const filename = req.params.filename;
+        const filePath = path.join(__dirname, "public", "uploads", filename);
+
+        // Verify file exists
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).send("File not found");
+        }
+
+        // Download the file
+        res.download(filePath);
+    } catch (error) {
+        console.error("Download error:", error);
+        res.status(500).send("Error downloading file");
+    }
+});
+
 function isAdmin(req, res, next) {
     if (req.session.admin) {
         next();
