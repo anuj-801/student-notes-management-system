@@ -65,17 +65,26 @@ app.get("/admin/upload", isAdmin, (req, res) => {
 });
 
 app.post("/admin", isAdmin, upload.single("pdf"), async (req, res) => {
-    const note = new Note({
-        title: req.body.title,
-        course: req.body.course,
-        semester: req.body.semester,
-        subject: req.body.subject,
-        unit: req.body.unit,
-        pdf: `/uploads/${req.file.filename}`
-    });
-    await note.save();
+    try {
+        if (!req.file) {
+            return res.status(400).send("Please upload a PDF file");
+        }
 
-    res.send("Note saved successfully!");
+        const note = new Note({
+            title: req.body.title,
+            course: req.body.course,
+            semester: req.body.semester,
+            subject: req.body.subject,
+            unit: req.body.unit,
+            pdf: `/uploads/${req.file.filename}`
+        });
+        await note.save();
+
+        res.status(200).send("Note saved successfully!");
+    } catch (error) {
+        console.error("Upload error:", error);
+        res.status(500).send("Error uploading note: " + error.message);
+    }
 });
 
 app.get("/admin/notes", isAdmin, async (req, res) => {
@@ -100,34 +109,47 @@ app.get("/admin/notes/edit/:id", isAdmin, async (req, res) => {
 });
 
 app.post("/admin/notes/edit/:id", isAdmin, async (req, res) => {
-    const id = req.params.id;
+    try {
+        const id = req.params.id;
 
-    await Note.findByIdAndUpdate(id, {
-        title: req.body.title,
-        semester: req.body.semester,
-        subject: req.body.subject,
-        unit: req.body.unit
-    });
+        await Note.findByIdAndUpdate(id, {
+            title: req.body.title,
+            semester: req.body.semester,
+            subject: req.body.subject,
+            unit: req.body.unit
+        });
 
-    res.redirect("/admin/notes");
+        res.redirect("/admin/notes");
+    } catch (error) {
+        console.error("Edit note error:", error);
+        res.status(500).send("Error updating note");
+    }
 });
 
 app.delete("/admin/notes/delete/:id", isAdmin, async (req, res) => {
-    const id = req.params.id;
-    const note = await Note.findById(id);
-    if (!note) {
-        return res.status(404).send("Note not found");
+    try {
+        const id = req.params.id;
+        const note = await Note.findById(id);
+        if (!note) {
+            return res.status(404).send("Note not found");
+        }
+        
+        const filePath = path.join(
+            __dirname,
+            "public",
+            note.pdf.startsWith("/") ? note.pdf.substring(1) : note.pdf
+        );
+        
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+        
+        await Note.findByIdAndDelete(id);
+        res.redirect("/admin/notes");
+    } catch (error) {
+        console.error("Delete note error:", error);
+        res.status(500).send("Error deleting note");
     }
-    const filePath = path.join(
-        __dirname,
-        "public",
-        note.pdf.replace("/", "")
-    );
-    if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-    }
-    await Note.findByIdAndDelete(id);
-    res.redirect("/admin/notes");
 });
 
 app.get("/login", (req, res) => {
@@ -141,29 +163,58 @@ app.get("/register", (req, res) => {
 
 
 app.post("/register", async (req, res) => {
-    const { name, email, password, course, semester } = req.body;
+    try {
+        const { name, email, password, course, semester } = req.body;
 
-    const existingStudent = await Student.findOne({ email });
+        // Validate inputs
+        if (!name || !email || !password || !course || !semester) {
+            return res.status(400).render("register.ejs", {
+                error: "All fields are required"
+            });
+        }
 
-    if (existingStudent) {
-    return res.status(409).send(
-        "This email is already registered. Please log in."
-    );
-}
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).render("register.ejs", {
+                error: "Please enter a valid email address"
+            });
+        }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+        // Validate password length
+        if (password.length < 6) {
+            return res.status(400).render("register.ejs", {
+                error: "Password must be at least 6 characters long"
+            });
+        }
 
-    const student = new Student({
-        name,
-        email,
-        password: hashedPassword,
-        course,
-        semester
-    });
+        const existingStudent = await Student.findOne({ email });
 
-    await student.save();
+        if (existingStudent) {
+            return res.status(409).render("register.ejs", {
+                error: "This email is already registered. Please log in."
+            });
+        }
 
-    res.redirect("/student-login");
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const student = new Student({
+            name,
+            email,
+            password: hashedPassword,
+            course,
+            semester
+        });
+
+        await student.save();
+
+        res.redirect("/student-login");
+    } catch (error) {
+        console.error("Registration error:", error);
+        res.status(500).render("register.ejs", {
+            error: "An error occurred during registration. Please try again."
+        });
+    }
 });
 
 app.get("/student-login", (req, res) => {
@@ -171,26 +222,39 @@ app.get("/student-login", (req, res) => {
 });
 
 app.post("/student-login", async (req, res) => {
-    const { email, password } = req.body;
+    try {
+        const { email, password } = req.body;
 
-    const student = await Student.findOne({ email });
+        if (!email || !password) {
+            return res.status(400).render("student-login.ejs", {
+                error: "Email and password are required"
+            });
+        }
 
-    if (!student) {
-        return res.send("Invalid email or password");
+        const student = await Student.findOne({ email });
+
+        if (!student) {
+            return res.status(401).render("student-login.ejs", {
+                error: "Invalid email or password"
+            });
+        }
+
+        const isMatch = await bcrypt.compare(password, student.password);
+
+        if (!isMatch) {
+            return res.status(401).render("student-login.ejs", {
+                error: "Invalid email or password"
+            });
+        }
+
+        req.session.student = student._id;
+        res.redirect("/student/dashboard");
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).render("student-login.ejs", {
+            error: "An error occurred during login. Please try again."
+        });
     }
-
-    const isMatch = await bcrypt.compare(
-        password,
-        student.password
-    );
-
-    if (!isMatch) {
-        return res.send("Invalid email or password");
-    }
-
-    req.session.student = student._id;
-
-    res.redirect("/student/dashboard");
 });
 
 app.get("/student/dashboard", async (req, res) => {
@@ -235,20 +299,39 @@ function isAdmin(req, res, next) {
 }
 
 app.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-    const admin = await Admin.findOne({ email });
+    try {
+        const { email, password } = req.body;
 
-    if (!admin) {
-        return res.send("Invalid email and password");
+        if (!email || !password) {
+            return res.status(400).render("login.ejs", {
+                error: "Email and password are required"
+            });
+        }
+
+        const admin = await Admin.findOne({ email });
+
+        if (!admin) {
+            return res.status(401).render("login.ejs", {
+                error: "Invalid email or password"
+            });
+        }
+
+        const isMatch = await bcrypt.compare(password, admin.password);
+
+        if (!isMatch) {
+            return res.status(401).render("login.ejs", {
+                error: "Invalid email or password"
+            });
+        }
+
+        req.session.admin = true;
+        res.redirect("/admin");
+    } catch (error) {
+        console.error("Admin login error:", error);
+        res.status(500).render("login.ejs", {
+            error: "An error occurred during login. Please try again."
+        });
     }
-    const isMatch = await bcrypt.compare(password, admin.password);
-
-    if (!isMatch) {
-        return res.send("Invalid email or password");
-    }
-
-    req.session.admin = true;
-    res.redirect("/admin");
 });
 
 app.get("/logout", (req, res) => {

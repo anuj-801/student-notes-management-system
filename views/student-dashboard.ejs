@@ -1,27 +1,52 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-</head>
-<body>
+  <%- include("partials/head.ejs") %>
 
-    <h1>Welcome, <%= student.name %>!</h1>
+  <body>
+    <nav>
+      <a href="/" class="logo">STUDENTNOTES</a>
+      <ul class="nav-links">
+        <li><a href="/" class="btn btn-primary">HOME</a></li>
+        <li><a href="/student-logout" class="btn btn-primary">LOGOUT</a></li>
+      </ul>
+    </nav>
 
-    <h2>Your Details</h2>
+    <main>
+      <section class="page-container dashboard-container">
+        <div class="dashboard-card">
+          <h2>Welcome, <%= student.name %>!</h2>
 
-    <p>Name: <%= student.name %></p>
-    <p>Email: <%= student.email %></p>
-    <p>Course: <%= student.course %></p>
-    <p>Semester: <%= student.semester %></p>
+          <div class="student-details">
+            <div class="detail-section">
+              <h3>Your Details</h3>
+              <div class="detail-item">
+                <span class="detail-label">Name:</span>
+                <span class="detail-value"><%= student.name %></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value"><%= student.email %></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Course:</span>
+                <span class="detail-value"><%= student.course %></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Semester:</span>
+                <span class="detail-value"><%= student.semester %></span>
+              </div>
+            </div>
+          </div>
 
-    <a href="/student/notes">Explore Notes</a>
+          <div class="dashboard-actions">
+            <a href="/student/notes" class="btn btn-browse btn-action">
+              Explore Your Notes
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    <br><br>
-
-    <a href="/student-logout">Logout</a>
-
-</body>
-</html>
+    <%- include("partials/script.ejs") %>
+  </body>

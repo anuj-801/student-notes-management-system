@@ -15,6 +15,13 @@
         <div class="form-card">
           <h3>Admin Login</h3>
           <p>Login to manage study materials and upload notes.</p>
+
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-error">
+              <%= error %>
+            </div>
+          <% } %>
+
           <form action="/login" method="post">
             <div class="form-group">
               <label for="email">Email</label>

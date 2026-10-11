@@ -19,6 +19,7 @@ body {
   letter-spacing: 0.05rem;
   transition: all 0.3s ease;
   text-transform: uppercase;
+  border: none;
 }
 
 .btn-primary {
@@ -30,7 +31,7 @@ body {
 
 .btn-browse {
   background-color: #fff;
-  color: #000;
+  color: #000 !important;
   padding: 1.2rem 2.5rem;
   font-size: 1rem;
   font-weight: 700;
@@ -48,6 +49,18 @@ nav {
   align-items: center;
   padding: 1.5rem 3rem;
   background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .logo {
@@ -56,10 +69,19 @@ nav {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.15rem;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  color: #333;
+  transform: scale(1.05);
 }
 
 .nav-links {
   list-style: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .nav-links a {
@@ -67,10 +89,28 @@ nav {
   color: #000;
   font-size: 0.9rem;
   font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
 }
 
 .nav-links a:hover {
-  color: #ccc;
+  color: #fff;
+  background-color: #000;
+}
+
+.btn-nav {
+  padding: 0.6rem 1.2rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  border: 1px solid #000;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 /* ---------------------- Home Page -------------------- */
@@ -95,6 +135,19 @@ body.dark-mode .nav-links a:hover {
 
 body.dark-mode .btn-primary {
   color: #fff;
+}
+
+body.dark-mode .btn-browse {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 2px solid #fff;
+  text-decoration: none;
+}
+
+body.dark-mode .btn-browse:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #fff;
 }
 
 .hero {
@@ -465,6 +518,228 @@ body.dark-mode .btn-primary {
   margin: auto;
 }
 
+.register-container {
+  max-width: 60vw;
+  margin: auto;
+}
+
+/* ---------------------- Alert Messages -------------------- */
+.alert {
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.alert-error {
+  background-color: #fde8e8;
+  color: #c41e3a;
+  border: 1px solid #c41e3a;
+}
+
+.alert-success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+
+.alert-warning {
+  background-color: #fff3e0;
+  color: #e65100;
+  border: 1px solid #e65100;
+}
+
+/* ---------------------- Form Footer -------------------- */
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.link-secondary {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.link-secondary:hover {
+  color: #666;
+  text-decoration: underline;
+}
+
+/* ---------------------- Student Dashboard -------------------- */
+.dashboard-container {
+  max-width: 70vw;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.dashboard-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 2.5rem;
+  border-radius: 0.4rem;
+}
+
+.dashboard-card h2 {
+  font-size: 2rem;
+  color: #000;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #000;
+}
+
+.student-details {
+  margin-bottom: 2rem;
+}
+
+.detail-section h3 {
+  font-size: 1.3rem;
+  color: #000;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #000;
+  min-width: 120px;
+}
+
+.detail-value {
+  color: #666;
+  text-align: right;
+  flex: 1;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.dashboard-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-action {
+  flex: 1;
+  text-align: center;
+  padding: 1rem 2rem;
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #000;
+}
+
+.btn-action:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* ---------------------- Notes List Styling -------------------- */
+.notes-list-container {
+  max-width: 90vw;
+  margin: 2rem auto;
+}
+
+.note-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+.note-card:hover {
+  border-color: #000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.note-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.note-meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.note-meta span {
+  margin-right: 1.5rem;
+}
+
+.note-download-btn {
+  background: #000;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.note-download-btn:hover {
+  background: #333;
+}
+
+/* ---------------------- Edit Note Page -------------------- */
+.edit-container {
+  max-width: 70vw;
+  margin: 2rem auto;
+}
+
+/* ---------------------- 404 Page -------------------- */
+.error-container {
+  max-width: 70vw;
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.error-code {
+  font-size: 6rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.error-back-link {
+  background: #000;
+  color: #fff;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 0.3rem;
+  transition: all 0.3s ease;
+}
+
+.error-back-link:hover {
+  background: #333;
+}
+
 
 
 
@@ -475,14 +750,39 @@ body.dark-mode .btn-primary {
   /* Navbar */
   nav {
     padding: 1rem 1.2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
   }
 
   .logo {
     font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    gap: 0.5rem;
+    justify-content: center;
   }
 
   .nav-links a {
     font-size: 0.75rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .btn-nav {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.75rem !important;
+    flex: 1;
+    text-align: center;
   }
 
   /* Main containers */
@@ -570,30 +870,120 @@ body.dark-mode .btn-primary {
     flex: 1;
     text-align: center;
   }
+  
   /* Login & Upload forms */
+  .login-container,
+  .register-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 1rem 0;
+  }
 
-.login-container {
-  max-width: 100%;
-  width: 100%;
-}
+  .form-card {
+    width: 100%;
+    padding: 1.2rem;
+  }
 
-.form-card {
-  width: 100%;
-  padding: 1.2rem;
-}
+  .form-card h3 {
+    font-size: 1.5rem;
+  }
 
-.form-card h3 {
-  font-size: 1.5rem;
-}
+  .form-group input,
+  .form-group select {
+    font-size: 1rem;
+  }
 
-.form-group input,
-.form-group select {
-  font-size: 1rem;
-}
+  .btn-submit {
+    padding: 1rem;
+  }
 
-.btn-submit {
-  padding: 1rem;
-}
+  /* Dashboard */
+  .dashboard-container {
+    max-width: 100%;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+
+  .dashboard-card {
+    padding: 1.5rem;
+  }
+
+  .dashboard-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detail-label {
+    min-width: auto;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
+
+  /* Notes list */
+  .notes-list-container {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+
+  .note-card {
+    padding: 1rem;
+  }
+
+  .note-title {
+    font-size: 1rem;
+  }
+
+  .note-meta {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .note-meta span {
+    display: block;
+    margin-bottom: 0.3rem;
+    margin-right: 0;
+  }
+
+  /* Edit container */
+  .edit-container {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+
+  /* Error page */
+  .error-container {
+    max-width: 100%;
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .error-code {
+    font-size: 3rem;
+  }
+
+  .error-message {
+    font-size: 1.2rem;
+  }
+
+  /* Alert */
+  .alert {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
 
 }
 

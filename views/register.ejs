@@ -1,58 +1,86 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration</title>
-</head>
-<body>
+  <%- include("partials/head.ejs") %>
 
-    <h1>Student Registration</h1>
+  <body>
+    <nav>
+      <a href="/" class="logo">STUDENTNOTES</a>
+      <ul class="nav-links">
+        <li><a href="/" class="btn btn-primary">HOME</a></li>
+      </ul>
+    </nav>
 
-    <form action="/register" method="POST">
+    <main>
+      <section class="page-container register-container">
+        <div class="form-card">
+          <h3>Student Registration</h3>
+          <p>Create your account to access study materials for your course.</p>
 
-        <label>Full Name</label>
-        <input type="text" name="name" required>
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-error">
+              <%= error %>
+            </div>
+          <% } %>
 
-        <br><br>
+          <form action="/register" method="POST">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" name="name" id="name" required />
+            </div>
 
-        <label>Email</label>
-        <input type="email" name="email" required>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" required />
+            </div>
 
-        <br><br>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                minlength="6"
+                title="Password must be at least 6 characters long"
+              />
+            </div>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+            <div class="form-group">
+              <label for="course">Course</label>
+              <select name="course" id="course" required>
+                <option value="">Select Course</option>
+                <option value="BCA">BCA</option>
+                <option value="MCA">MCA</option>
+                <option value="BBA">BBA</option>
+              </select>
+            </div>
 
-        <br><br>
+            <div class="form-group">
+              <label for="semester">Semester</label>
+              <select name="semester" id="semester" required>
+                <option value="">Select Semester</option>
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6">Semester 6</option>
+              </select>
+            </div>
 
-        <label>Course</label>
-        <select name="course" required>
-            <option value="">Select Course</option>
-            <option value="BCA">BCA</option>
-            <option value="MCA">MCA</option>
-            <option value="BBA">BBA</option>
-        </select>
+            <button type="submit" class="btn btn-browse btn-submit">
+              Create Account
+            </button>
+          </form>
 
-        <br><br>
+          <p class="form-footer">
+            Already have an account?
+            <a href="/student-login" class="link-secondary">Login here</a>
+          </p>
+        </div>
+      </section>
+    </main>
 
-        <label>Semester</label>
-        <select name="semester" required>
-            <option value="">Select Semester</option>
-            <option value="1">Semester 1</option>
-            <option value="2">Semester 2</option>
-            <option value="3">Semester 3</option>
-            <option value="4">Semester 4</option>
-            <option value="5">Semester 5</option>
-            <option value="6">Semester 6</option>
-        </select>
-
-        <br><br>
-
-        <button type="submit">Create Account</button>
-
-    </form>
-
-</body>
-</html>
+    <%- include("partials/script.ejs") %>
+  </body>
