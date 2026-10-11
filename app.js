@@ -316,8 +316,10 @@ app.get("/download/:filename", async (req, res) => {
             return res.status(404).send("File not found");
         }
 
-        // Download the file
-        res.download(filePath);
+        // Display the PDF in browser (not download)
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", "inline; filename=" + filename);
+        res.sendFile(filePath);
     } catch (error) {
         console.error("Download error:", error);
         res.status(500).send("Error downloading file");
